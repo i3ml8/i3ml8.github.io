@@ -4,59 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор Пульсовых зон</title>
+    <title>i3ml8 Main Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <div class="calculator">
-            <h1>Найди свои <br> <span>Пульсовые зоны</span></h1>
-            <div class="input-box">
-                <label for="age">Возрат:</label>
-                <input type="number" id="age">
-                <label for="resting-pulse">Пульс в покое:</label>
-                <input type="number" id="resting-pulse">
-                <button onclick="calculatePulseZones()">Рассчитать</button>
-            </div>
-            <p id="result"></p>
-        </div>
-        <footer><center>Сделано izmylv</center></footer>
-    </div>
-    <script>
-        let userAge = document.getElementById("age");
-        let restingPulse = document.getElementById("resting-pulse");
-        console.log(userAge, restingPulse);
-
-        //userAge.max = 120;
-        let result = document.getElementById("result");
-
-        function calculatePulseZones(){
-         let age = Number(userAge.value);
-         let pulse = Number(restingPulse.value);
-         let pulseAt50 = Math.round(((220 - age) - pulse) * 0.5 + pulse);
-         let pulseAt60 = Math.round(((220 - age) - pulse) * 0.6 + pulse);
-         let pulseAt70 = Math.round(((220 - age) - pulse) * 0.7 + pulse);
-         let pulseAt80 = Math.round(((220 - age) - pulse) * 0.8 + pulse);
-         let pulseAt90 = Math.round(((220 - age) - pulse) * 0.9 + pulse);
-         let pulseAt100 = Math.round(((220 - age) - pulse) + pulse);
-
-        /*let heartRateZone1 – Very light: 50-60% of HR max. ...
-        let heartRateZone2 – Light: 60-70% of HR max. ...
-        let heartRateZone3 – Moderate: 70-80% of HR max. ...
-        let heartRateZone4 – Hard: 80-90% of HR max. ...
-        let heartRateZone5 – Very hard: 90-100% of HR max.*/
-
-            result.innerHTML = `<p>Пульс в первой зоне <span>${pulseAt50} - ${pulseAt60}</span></p>
-            <p>Пульс в второй зоне <span>${pulseAt60} - ${pulseAt70}</span></p>
-            <p>Пульс в третей зоне <span>${pulseAt70} - ${pulseAt80}</span></p>
-            <p>Пульс в четвертой зоне <span>${pulseAt80} - ${pulseAt90}</span></p>
-            <p>Пульс в пятой зоне <span>${pulseAt90} - ${pulseAt100}</span></p>
-             `;
-        
-        }
-
-    
-
-    </script>
+            <h1>Welcome to i3ml8 page!</h1>
+            <h3>My project</h3>
+            <ul>
+                <li><a href="/heart_rate_calculator.html">Heart Rate Calculator</a></li>
+                <li><a href="https://github.com/i3ml8/Telegram_bot_for_DeepSeek">DeepSeek Telegram Bot</a></li>
+            </ul>
+            
 </body>
 </html>
