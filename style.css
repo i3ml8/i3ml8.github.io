@@ -8,7 +8,7 @@
 .container{
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(500deg, #124066, #ffffff);
+    background: linear-gradient(500deg, #401266, #ffffff);
     color: #fff;
     padding: 10px;
 }
@@ -70,7 +70,11 @@
     background-size: 30px;
     cursor: pointer;
 }
-
+.link{
+    font-size: 18px;
+    color: #fff;
+    margin-top: 7px;
+}
 #result{
     font-size: 20px;
     font-weight: 600;
