@@ -23,36 +23,49 @@
         <footer><center>Сделано izmylv</center></footer>
     </div>
 <script>
-let userAge = document.getElementById("age");
-        let restingPulse = document.getElementById("resting-pulse");
-        console.log(userAge, restingPulse);
+        const userAge = document.getElementById("age");
+        const restingPulse = document.getElementById("resting-pulse");
+        const result = document.getElementById("result");
 
-        //userAge.max = 120;
-        let result = document.getElementById("result");
+        const ZONE_PERCENTS = {
+            ZONE_1: { min: 0.5, max: 0.6 },
+            ZONE_2: { min: 0.6, max: 0.7 },
+            ZONE_3: { min: 0.7, max: 0.8 },
+            ZONE_4: { min: 0.8, max: 0.9 },
+            ZONE_5: { min: 0.9, max: 1.0 }
+        };
 
-        function calculatePulseZones(){
-         let age = Number(userAge.value);
-         let pulse = Number(restingPulse.value);
-         let pulseAt50 = Math.round(((220 - age) - pulse) * 0.5 + pulse);
-         let pulseAt60 = Math.round(((220 - age) - pulse) * 0.6 + pulse);
-         let pulseAt70 = Math.round(((220 - age) - pulse) * 0.7 + pulse);
-         let pulseAt80 = Math.round(((220 - age) - pulse) * 0.8 + pulse);
-         let pulseAt90 = Math.round(((220 - age) - pulse) * 0.9 + pulse);
-         let pulseAt100 = Math.round(((220 - age) - pulse) + pulse);
+        function calculatePulseZones() {
+            const age = Number(userAge.value);
+            const pulse = Number(restingPulse.value);
 
-        /*let heartRateZone1 – Very light: 50-60% of HR max. ...
-        let heartRateZone2 – Light: 60-70% of HR max. ...
-        let heartRateZone3 – Moderate: 70-80% of HR max. ...
-        let heartRateZone4 – Hard: 80-90% of HR max. ...
-        let heartRateZone5 – Very hard: 90-100% of HR max.*/
+            // Проверка ввода
+            if (isNaN(age) || age <= 0 || age > 120) {
+                result.innerHTML = "<p class='text-danger'>Пожалуйста, введите корректный возраст (от 1 до 120 лет).</p>";
+                return;
+            }
+            if (isNaN(pulse) || pulse <= 0 || pulse > 200) {
+                result.innerHTML = "<p class='text-danger'>Пожалуйста, введите корректный пульс (от 1 до 200 ударов в минуту).</p>";
+                return;
+            }
 
-            result.innerHTML = `<p>Пульс в первой зоне <span>${pulseAt50} - ${pulseAt60}</span></p>
-            <p>Пульс в второй зоне <span>${pulseAt60} - ${pulseAt70}</span></p>
-            <p>Пульс в третей зоне <span>${pulseAt70} - ${pulseAt80}</span></p>
-            <p>Пульс в четвертой зоне <span>${pulseAt80} - ${pulseAt90}</span></p>
-            <p>Пульс в пятой зоне <span>${pulseAt90} - ${pulseAt100}</span></p>
-             `;
-        
+            const maxHeartRate = 220 - age;
+            const heartRateReserve = maxHeartRate - pulse;
+
+            const pulseAt50 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_1.min + pulse);
+            const pulseAt60 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_1.max + pulse);
+            const pulseAt70 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_2.max + pulse);
+            const pulseAt80 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_3.max + pulse);
+            const pulseAt90 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_4.max + pulse);
+            const pulseAt100 = Math.round(heartRateReserve * ZONE_PERCENTS.ZONE_5.max + pulse);
+
+            result.innerHTML = `
+                <p>Пульс в первой зоне: <span class="text-primary">${pulseAt50} - ${pulseAt60}</span></p>
+                <p>Пульс во второй зоне: <span class="text-primary">${pulseAt60} - ${pulseAt70}</span></p>
+                <p>Пульс в третьей зоне: <span class="text-primary">${pulseAt70} - ${pulseAt80}</span></p>
+                <p>Пульс в четвертой зоне: <span class="text-primary">${pulseAt80} - ${pulseAt90}</span></p>
+                <p>Пульс в пятой зоне: <span class="text-primary">${pulseAt90} - ${pulseAt100}</span></p>
+            `;
         }
 </script>
 </body>
